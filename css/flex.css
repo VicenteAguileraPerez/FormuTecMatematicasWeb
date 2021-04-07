@@ -1,0 +1,52 @@
+/********************************\
+               flex
+\*********************************/
+.flex
+{
+    display: flex;
+}
+@media only screen and (max-width: 700px) 
+{
+    
+    .inlines
+    {
+        display: inline-block;
+        margin-right: auto;
+        margin-left: auto;
+        width: 100%;
+        padding: 1.5rem;
+        text-align: center;
+    }
+}
+.justify-content-center{
+    justify-content: center;
+    
+}
+.justify-content-space-around{
+    justify-content: space-around;
+    
+}
+.justify-content-space-between{
+    justify-content: space-between;
+    
+}
+.justify-content-space-evenly{
+    justify-content: space-evenly;
+    
+}
+.align-items-center
+{
+    align-items: center;
+}
+.align-self-center
+{
+    align-self: center;
+}
+.flex-direction-column
+{
+    flex-direction:column;
+}
+.flex-direction-row
+{
+    flex-direction:row;
+}
