@@ -1,3 +1,3 @@
 # FormuTecMatematicasWeb
 
-## Proyecto de Formutec
+## Proyecto de Formutec de Fórmulas
