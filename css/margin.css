@@ -1,0 +1,13 @@
+.ml-auto
+{
+    margin-left: auto;
+} 
+.mr-auto
+{
+    margin-right: auto;
+}   
+.btn-closed
+{
+    padding:  .5rem .5rem !important;
+    margin: -.5rem -.5rem -.5rem 0 !important;
+}
