@@ -10,30 +10,12 @@
     background: radial-gradient(circle, var(--color-azul-1) 0%, var(--color-azul-2) 100%);
 }
 
-.bg-blanco
-{
-    background:var(--color-blanco);
-}
-
 .text-azul-1
 {
     color:var(--color-azul-1);
-}
-
-.bg-azul-1
-{
-    background:var(--color-azul-1);
 }
 
 .texto-blanco
 {
     color:var(--color-blanco);
 }
-
-
-
-
-
-
-
-
