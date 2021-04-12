@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,39 +21,32 @@
 </head>
 
 <body class="bg-degradado">
-    
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Eliminar Subtema
     </button>
-    
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content ">
-            <div class="modal-header ">
-            <h1 class="modal-title text-azul-1 ml-auto mr-auto" id="exampleModalLabel">Subtema</h1>
-            <button type="button" class="btn-close btn-closed" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div>
-                    <form class="form flex flex-direction-column" id="eliminar" name="eliminar" action="" method="" enctype="">
-                        <input class="form-control" required type="text" name="nombres" id="nombres" placeholder="Nombre del Subtema"> <br>
-                        <input class="form-control" required type="file" name="seleccion" id="seleccion"> <br>
-                        <input class="texto-blanco btn btn-danger" type="submit" name="eliminar" id="eliminar" value="Eliminar">
-                    </form>
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h1 class="modal-title text-azul-1 ml-auto mr-auto" id="exampleModalLabel">Subtema</h1>
+                    <button type="button" class="btn-close btn-closed" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-        
-            
+                <div class="modal-body">
+                    <div>
+                        <form class="form flex flex-direction-column" id="eliminar" name="eliminar" action="" method="" enctype="">
+                            <input class="form-control" required type="text" name="nombres" id="nombres" placeholder="Nombre del Subtema"> <br>
+                            <input class="form-control" required type="file" name="seleccion" id="seleccion"> <br>
+                            <input class="texto-blanco btn btn-danger" type="submit" name="eliminar" id="eliminar" value="Eliminar">
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
             </div>
-            <div class="modal-footer">
-                
-            </div>
-        </div>
         </div>
     </div>
-
-
-    
 </body>
+
 </html>

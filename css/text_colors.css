@@ -1,25 +1,23 @@
-.texto-blanco
-{
-    color:var(--color-blanco);
-}
-.text-azul-3
-{
-    color:var(--color-azul-3);
-}
-.text-gris
-{
-    color:var(--color-gris);
-}
-.text-negro
-{
-    color:var(--color-negro);
+.texto-blanco {
+    color: var(--color-blanco);
 }
 
-.text-transparent
-{
-    color:var(--transparent);
+.text-azul-3 {
+    color: var(--color-azul-3);
 }
-.text-size
-{
+
+.text-gris {
+    color: var(--color-gris);
+}
+
+.text-negro {
+    color: var(--color-negro);
+}
+
+.text-transparent {
+    color: var(--transparent);
+}
+
+.text-size {
     font-size: 1rem;
 }
