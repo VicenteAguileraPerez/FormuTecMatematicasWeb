@@ -21,3 +21,7 @@
 .text-size {
     font-size: 1rem;
 }
+.text-azul-1
+{
+    color:var(--color-azul-1);
+}
