@@ -30,19 +30,19 @@ $app->post('/registrarse', function (Request $request, Response $response, $args
 
 $app->post('/iniciarsesion', function (Request $request, Response $response, $args) {
     $data =  json_decode($request->getBody(), true);
-    $email  = $data['email'];
-    $password = $data['password'];
+    $email  = $_POST['email'];
+    $password = $_POST['password'];
     $dbhandler = new DBHandlerUsers();
     $response->getBody()->write(json_encode($dbhandler->iniciarSesion($email, $password)));
     return $response->withHeader('Content-Type', 'application/json');
 });
 
-$app->put('/modificar/cliente', function (Request $request, Response $response, $args) {
+$app->post('/modificar/cliente', function (Request $request, Response $response, $args) {
     $data =  json_decode($request->getBody(), true);
-    $id = $data['id'];
-    $nombre = $data['nombre'];
-    $email  = $data['email'];
-    $password = $data['password'];
+    $id = $_POST['id'];
+    $nombre = $_POST['nombre'];
+    $email  = $_POST['email'];
+    $password = $_POST['password'];
     $dbhandler = new DBHandlerUsers();
     $response->getBody()->write(json_encode($dbhandler->modifyUser($nombre, $email, $password, $id)));
     //$response->getBody()->write($data);
