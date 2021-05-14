@@ -5,6 +5,10 @@
 .mr-auto
 {
     margin-right: auto;
+} 
+.p-8
+{
+    padding: 0.5rem;
 }   
 .btn-closed
 {

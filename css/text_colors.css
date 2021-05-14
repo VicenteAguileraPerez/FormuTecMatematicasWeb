@@ -2,6 +2,10 @@
     color: var(--color-blanco);
 }
 
+.texto-rojo-1 {
+    color: var(--color-rojo-1);
+}
+
 .text-azul-3 {
     color: var(--color-azul-3);
 }

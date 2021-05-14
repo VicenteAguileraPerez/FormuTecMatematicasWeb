@@ -1,5 +1,6 @@
 <?php
-require_once("./public/helpers/validations.php");
+require_once __DIR__ ."\..\helpers\\validations.php";
+include_once (__DIR__. "\..\conexion.php");
 class DBHandlerUsers
 {
     private $conn;
@@ -7,7 +8,7 @@ class DBHandlerUsers
 
     function __construct()
     {
-        require_once("./public/conexion.php");
+      
 
         // opening db connection
         new ConnectionBBDD();
