@@ -15,10 +15,10 @@ require './src/middleware_users.php';
 
 
 try {
-    $app->run();     
-} catch (Exception $e) {    
+  $app->run();
+} catch (Exception $e) {
   // We display a error message
-  die( json_encode(array("status" => "failed", "message" => "This action is not allowed".$e))); 
+  die(json_encode(array("status" => "failed", "message" => "This action is not allowed" . $e)));
 }
 
 /**
@@ -28,4 +28,3 @@ try {
  * var_dump($dbhandler->createUser("vicente","vic@hotmail.com","12345678"));
  * ?>
  */
-
