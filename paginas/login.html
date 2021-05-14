@@ -32,17 +32,19 @@
                 <h1 class="modal-title text-azul-1 ml-auto mr-auto">Ingresar</h1>
             </div>
             <div class="modal-body">
-                <form class="form flex flex-direction-column" id="login" name="login" action="" method="POST"
-                    enctype="">
-                    <input class="form-control" required type="email" name="correo" id="correo"
-                        placeholder="Correo Electrónico"> <br>
-                    <input class="form-control" required type="password" name="contrasena" id="contrasena"
-                        placeholder="Contraseña"> <br>
-                    <input class="texto-blanco btn btn-primary" type="submit" name="iniciar" id="iniciar"
-                        value="Iniciar">
-                </form>
-            </div>
-            <div class="modal-footer">
+                <div>
+                    <form class="form flex flex-direction-column" id="formL" name="formL" action="" method="POST"
+                        enctype="">
+                        <input class="form-control" type="email" name="correo" id="correo"
+                            placeholder="Correo Electrónico">
+                        <br>
+                        <input class="form-control" type="password" name="contrasena" id="contrasena"
+                            placeholder="Contraseña"> <br>
+                        <input class="texto-blanco btn btn-primary" type="button" name="login" id="login"
+                            value="Iniciar">
+                    </form>
+                </div>
+                <div class="flex justify-content-center " id="message"></div>
             </div>
         </div>
     </div>

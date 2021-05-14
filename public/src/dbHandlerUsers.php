@@ -1,6 +1,8 @@
 <?php
-require_once __DIR__ ."\..\helpers\\validations.php";
-include_once (__DIR__. "\..\conexion.php");
+
+require_once __DIR__ . "\..\helpers\\validations.php";
+include_once(__DIR__ . "\..\conexion.php");
+
 class DBHandlerUsers
 {
     private $conn;
@@ -8,38 +10,34 @@ class DBHandlerUsers
 
     function __construct()
     {
-      
-
         // opening db connection
         new ConnectionBBDD();
         $this->validations = new Validations();
         $this->conn =  $GLOBALS['connect'];
     }
 
-
     // creating new user if not existed
     public function createUser($nombre, $email, $pass)
     {
         $response = array();
-
         // First check if user already existed in db
         if ($this->validations->isNotEmpty($nombre) and $this->validations->isNotEmpty($email)) {
             if ($this->validations->isValidPassword($pass)) {
-
                 if (!$this->isUserExists($email)) {
                     // insert query
                     $stmt =  $GLOBALS['connect']->prepare("INSERT INTO usuarios(nombre, email, password) values(?, ?, ?)");
                     $stmt->bind_param("sss", $nombre, $email, $pass);
-
                     $result = $stmt->execute();
-
                     $stmt->close();
-
                     // Check for successful insertion
                     if ($result) {
                         // User successfully inserted
                         $response["error"] = false;
-                        $response["user"] = $this->getUserByEmail($email);
+                        if ($this->getUserByEmail($email) !== NULL) {
+                            $response["user"] = $this->getUserByEmail($email);
+                        } else {
+                            $response["message"] = "Oops! Ocurrio un error al registrar";
+                        }
                     } else {
                         // Failed to create user
                         $response["error"] = true;
@@ -58,7 +56,6 @@ class DBHandlerUsers
             $response["error"] = false;
             $response["message"] = "Campo nombre o campo email están vacíos";
         }
-
         return $response;
     }
 
@@ -68,20 +65,22 @@ class DBHandlerUsers
      */
     public function getUserByEmail($email)
     {
-
-
+        $user = array();
         $stmt = $GLOBALS['connect']->prepare("SELECT id, nombre, email FROM usuarios WHERE email = '$email'");
-
         if ($stmt->execute()) {
             // $user = $stmt->get_result()->fetch_assoc();
-
             $result = $stmt->get_result()->fetch_assoc();
-            $user = array();
-            $user["id"] = $result['id'];
-            $user["nombre"] = $result['nombre'];
-            $user["email"] = $result['email'];
+            $response["error"] = false;
+            if ($result) {
+                $user = array();
+                $user["id"] = $result['id'];
+                $user["nombre"] = $result['nombre'];
+                $user["email"] = $result['email'];
+                return $user;
+            } else {
+                return NULL;
+            }
             $stmt->close();
-            return $user;
         } else {
             return NULL;
         }
@@ -101,11 +100,11 @@ class DBHandlerUsers
         $stmt->close();
         return $num_rows > 0;
     }
+
     public function modifyUser($nombre, $email, $pass, $id)
     {
         // First check if user already existed in db
         if ($GLOBALS['connect'] !== NULL) {
-
             if ($this->validations->isNotEmpty($nombre) and $this->validations->isNotEmpty($email)) {
                 if ($this->validations->isValidPassword($pass)) {
                     // insert query
@@ -135,26 +134,36 @@ class DBHandlerUsers
             $response["message"] = "Oops! Ocurrio un error";
         }
     }
+
     public function iniciarSesion($email, $pass)
     {
+        $response = array();
         if ($this->validations->isNotEmpty($email) and $this->validations->isNotEmpty($pass)) {
             $stmt = $GLOBALS['connect']->prepare("SELECT id, nombre, email from usuarios WHERE email = '$email' and password='$pass'");
             if ($stmt->execute()) {
                 // $user = $stmt->get_result()->fetch_assoc();
-
                 $result = $stmt->get_result()->fetch_assoc();
-                $user = array();
-                $user["id"] = $result['id'];
-                $user["nombre"] = $result['nombre'];
-                $user["email"] = $result['email'];
+                $response["error"] = false;
+                if ($result) {
+                    $user = array();
+                    $user["id"] = $result['id'];
+                    $user["nombre"] = $result['nombre'];
+                    $user["email"] = $result['email'];
+                    $response["user"] = $user;
+                } else if ($this->getUserByEmail($email) !== NULL) {
+                    $response["message"] = "Contraseña incorrecta";
+                } else {
+                    $response["message"] = "No existe un cliente con esas credenciales";
+                }
                 $stmt->close();
-                return $user;
             } else {
-                return NULL;
+                $response["message"] = "Error al iniciar sesión";
+                $response["error"] = false;
             }
         } else {
             $response["error"] = false;
             $response["message"] = "Campo email o campo password están vacíos";
         }
+        return $response;
     }
 }

@@ -81,12 +81,14 @@
             </div>
             <div class="mb-3">
                 <label for="mensaje" class="form-label">Mensaje</label>
-                <textarea class="form-control" name="mensaje" id="mensaje" placeholder="Mensaje" required></textarea>
+                <textarea class="form-control" maxlength="200" name="mensaje" id="mensaje" placeholder="Mensaje"
+                    required></textarea>
             </div>
             <div class="d-grid gap-2">
                 <input type="submit" id="enviar" name="enviar" value="Enviar" class=" btn btn-primary">
             </div>
         </form>
+        <div class="flex justify-content-center " id="message"></div>
     </section>
     <section id="acerca" name="acerca" class="bg-azul-4">
         <h1 class="texto-blanco  flex justify-content-center align-items-center pt-2 pb-5">
@@ -97,12 +99,12 @@
                 <p>
                     FormuTec Matemáticas Web es un sitio web desarrollado por alumnos de la carrera de Ingeniería en
                     Sistemas Computacionales
-                    del TecNM Campus Uruapan
+                    del TecNM Campus Uruapan.
                 </p>
             </div>
             <div class="visible flex justify-content-space-evenly align-items-center pt-2">
                 <p class="visible">
-                    Sitio Web desarrollado por alumnos:
+                    Sitio Web desarrollado por los alumnos:
                 </p>
                 <p class="visible">
                     Profesores involucrados en el proyecto:
@@ -112,13 +114,13 @@
                 class=" pt-4 inlines flex justify-content-space-evenly align-items-center">
                 <div>
                     <p class="invisibles">
-                        Sitio Web desarrollado por alumnos:
+                        Sitio Web desarrollado por los alumnos:
                     </p>
                     <p>Vicente Aguilera Pérez <a href=""> <i class="fab fa-github texto-blanco"></i></a> <a href=""> <i
                                 class="fas fa-at texto-blanco"></i></a> </p>
                     <p>Jesus Antonio García Zamudio <a href=""> <i class="fab fa-github texto-blanco"></i></a> <a
                             href=""> <i class="fas fa-at texto-blanco"></i></a></p>
-                    <p>Edgar Manuel Velazquez Valdes <a href=""> <i class="fab fa-github texto-blanco"></i></a> <a
+                    <p>Edgar Manuel Velázquez Valdes <a href=""> <i class="fab fa-github texto-blanco"></i></a> <a
                             href=""> <i class="fas fa-at texto-blanco"></i></a></p>
                     <p>Mario Alberto Correa Juárez<a href=""> <i class="fab fa-github texto-blanco"></i></a> <a href="">
                             <i class="fas fa-at texto-blanco"></i></a></p>
@@ -153,5 +155,7 @@
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/scriptComentario.js"></script>
 
 </html>
