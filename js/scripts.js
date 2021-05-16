@@ -1,3 +1,7 @@
+
+/**
+ * Evaluar pass1=pass2
+ */
 $(document).ready(function () {   // Esta parte del código se ejecutará automáticamente cuando la página esté lista.
     $("#registrar").click(function () {
         var nombre = $("#nombre").val();
@@ -65,7 +69,7 @@ $(document).ready(function () {   // Esta parte del código se ejecutará autom�
                         mensaje.empty();
                         mensaje.css("color", "#090979");
                         mensaje.append(
-                            '<p>' + "Bienvenido " + json['user']['nombre'] + '</p>');
+                            '<p>' + "Bienvenido " + json['success']['nombre'] + '</p>');
                         setTimeout(() => location.href = "http://localhost/formutecmatematicasweb/paginas/Administracion.html", 500);
                     }
                 }
