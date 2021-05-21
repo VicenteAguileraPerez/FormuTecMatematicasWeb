@@ -10,16 +10,14 @@ class dbHandlerComentarios
 
     function __construct()
     {
-        // opening db connection
-        new ConnectionBBDD();
+     
         $this->validations = new Validations();
         $this->helperQueriesComentarios = new HelperQueriesComentarios();
     }
     function createComment($nombre,$email,$motivo,$message)
     {
         $response = array();
-        if ($GLOBALS['connect'] !== NULL) 
-        {
+        
             $arrayString= array('nombre'=>$nombre,'email'=>$email,'motivo'=>$motivo,'message'=>$message);
             $arrayLengths= array('nombre'=>45,'email'=>45,'motivo'=>1,'message'=>200);
             $response=$this->validations->validateLenght($arrayString,$arrayLengths);
@@ -31,30 +29,25 @@ class dbHandlerComentarios
                     $response = $this->helperQueriesComentarios->createComment($nombre, $email, $motivo,$message );
                 }
             }
-        }
-        else
-        {
-            $response["error"] = true;
-            $response["message"] = "Oops! No hay conexion a la base de datos";
-        }
+       
         return $response;
 
     }
-    function deleteComment($id)
+    function deleteComment($id,$token)
     {
         $response = array();
-        
-        $response = $this->helperQueriesComentarios->deleteComment($id); 
+      
+        $response = $this->helperQueriesComentarios->deleteComment($id,$token); 
                                
         
         return $response;
 
     }
-    function showComments()
+    function showComments($token)
     {
         $response = array();
         
-        $response = $this->helperQueriesComentarios->showComments(); 
+        $response = $this->helperQueriesComentarios->showComments($token); 
                                
         return $response;
 

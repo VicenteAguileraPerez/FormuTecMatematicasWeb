@@ -29,7 +29,7 @@ $(document).ready(function () {   // Esta parte del código se ejecutará autom�
                         mensaje.css("color", "#090979");
                         mensaje.append(
                             '<p>' + "Usuario Creado, redireccionando a Login..." + '</p>');
-                        setTimeout(() => location.href = "http://localhost/formutecmatematicasweb/paginas/login.html", 500);
+                        setTimeout(() => location.href = "http://localhost/Formutecmatematicasweb/paginas/login.html", 500);
                     }
                 }
                 else {
@@ -69,8 +69,9 @@ $(document).ready(function () {   // Esta parte del código se ejecutará autom�
                         mensaje.empty();
                         mensaje.css("color", "#090979");
                         mensaje.append(
-                            '<p>' + "Bienvenido " + json['success']['nombre'] + '</p>');
-                        setTimeout(() => location.href = "http://localhost/formutecmatematicasweb/paginas/Administracion.html", 500);
+                           '<p>' + "Bienvenido " + json['name'] + '</p>');
+                        setCookie(json['success']);
+                        setTimeout(() => location.href = "http://localhost/Formutecmatematicasweb/paginas/Administracion.html", 500);
                     }
                 }
                 else {

@@ -1,17 +1,19 @@
 <?php
 
 require_once __DIR__ . "\..\helpers\\helperValidations.php";
+require_once __DIR__ . "\..\helpers\\helperEncryptDecrypt.php";
 include_once(__DIR__ . "\..\conexion.php");
 
 class DBHandlerUsers
 {
     
     private $validations;
-
+    private $encryptDecrypt;
     function __construct()
     {
         // opening db connection
         new ConnectionBBDD();
+        $this->encryptDecrypt = new HelperEncryptDecrypt();
         $this->validations = new Validations();
     }
 
@@ -110,7 +112,7 @@ class DBHandlerUsers
      * @param String $email email to check in db
      * @return boolean
      */
-    private function isUserExists($email)
+    public function isUserExists($email)
     {
         $stmt = $GLOBALS['connect']->prepare("SELECT id from usuarios WHERE email = '$email'");
         $stmt->execute();
@@ -186,7 +188,8 @@ class DBHandlerUsers
                             $user["id"] = $result['id'];
                             $user["nombre"] = $result['nombre'];
                             $user["email"] = $result['email'];
-                            $response["success"] = $user;
+                            $response["name"]= $user['nombre']; 
+                            $response["success"] = $this->encryptDecrypt->encrypt($user);
                         } else if ($this->getUserByEmail($email) !== NULL) {
                             $response["message"] = "Contraseña incorrecta";
                         } else {

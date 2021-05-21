@@ -6,6 +6,8 @@ include_once('./handlers/dbHandlerComentarios.php');
 
 
 
+
+
 //createcomentario
 $app->post('/crearcomentario', function (Request $request, Response $response, $args) {
     $data =  $request->getParsedBody();
@@ -13,9 +15,9 @@ $app->post('/crearcomentario', function (Request $request, Response $response, $
     $email  = $data['email'];
     $motivo = $data['motivo'];
     $mensaje = $data['mensaje'];
-   /* $data= array('nombre' => "hola", 'p' => 12345);
-    $response->getBody()->write(json_encode($data));*/
-
+   /* $data= array('nombre' => "hola", 'p' => 12345);*/
+   
+   
     $dbhandler = new DBHandlerComentarios();
     $response->getBody()->write(json_encode($dbhandler->createComment($nombre, $email, $motivo,$mensaje)));
     return $response->withHeader('Content-Type', 'application/json');
@@ -26,20 +28,25 @@ $app->get('/vercomentarios', function (Request $request, Response $response, $ar
    // $data= array('nombre' => "vicente", 'p' => 12345);
    //$response->getBody()->write(json_encode($data));
     //$data= array('nombre' => $nombre, 'age' => 40);
-
+    $autho= array($request->getHeader("Authorization")[0]);
     $dbhandler = new DBHandlerComentarios();
-    $response->getBody()->write(json_encode($dbhandler->showComments()));
+    $response->getBody()->write(json_encode($dbhandler->showComments($autho[0])));
     return $response->withHeader('Content-Type', 'application/json');
 });
 
 $app->delete('/eliminarcomentario/{id}', function (Request $request, Response $response, $args) {
 
-   
+    
     $id = $args['id'];
-    //$data= array('nombre' => $id);
+    
+    //if()
+  
+    $autho= array($request->getHeader("Authorization")[0]);
     //$response->getBody()->write(json_encode($data));
     $dbhandler = new DBHandlerComentarios();
-    $response->getBody()->write(json_encode($dbhandler->deleteComment($id)));
+   //$response->getBody()->write(json_encode($autho));
+    $response->getBody()->write(json_encode($dbhandler->deleteComment($id,$autho[0])));
+    //$response->getBody()->write();
     return $response->withHeader('Content-Type', 'application/json');
 });
 

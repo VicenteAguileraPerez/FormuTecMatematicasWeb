@@ -1,16 +1,23 @@
 <?php
 
+require_once __DIR__ . "\..\helpers\\helperEncryptDecrypt.php";
+require_once __DIR__ . "\..\handlers\\dbHandlerUsers.php";
 class HelperQueriesComentarios
 {
+    private $hed;
+    private  $dbhu;
     function __construct()
     {
         // opening db connection
         new ConnectionBBDD();
-        
+        $this->hed = new HelperEncryptDecrypt();
+        $this->dbhu = new DBHandlerUsers();
+   
     }
 
     public function createComment($nombre, $email, $motivo,$message )
     {
+      
         $response = array();
         //check if the connection is valid
         if ($GLOBALS['connect'] !== NULL) 
@@ -43,7 +50,7 @@ class HelperQueriesComentarios
        
         return $response;
     }
-    public function showComments()
+    public function showComments($token)
     {
         $response = array();
         $allRows = array();
@@ -51,39 +58,47 @@ class HelperQueriesComentarios
         if ($GLOBALS['connect'] !== NULL) 
         {
            
-           // insert query
-           $stmt = $GLOBALS['connect']->prepare("SELECT * from comentarios");
-           $result= $stmt->execute();
-           $rows= $stmt->get_result();
-           
-          /**
-           * "current_field": null,
-           * "field_count": null,
-           * "lengths": null,
-           * "num_rows": null,
-           * "type": null
-           */
-           $num_rows = $rows->num_rows;
-           // Check for successful selection
-           if ($result)
-           {
-                while ($data = $rows->fetch_assoc())
+            $json =  explode(":",$this->hed->decrypt($token));
+            
+            if($this->dbhu->isUserExists(substr($json[1],1,-1)))
+            {
+                 // insert query
+                $stmt = $GLOBALS['connect']->prepare("SELECT * from comentarios");
+                $result= $stmt->execute();
+                $rows= $stmt->get_result();
+                
+                /**
+                 * "current_field": null,
+                 * "field_count": null,
+                 * "lengths": null,
+                 * "num_rows": null,
+                 * "type": null
+                 */
+                $num_rows = $rows->num_rows;
+                // Check for successful selection
+                if ($result)
                 {
-        
-                    $allRows[] = $data;
-    
-                }
-                $response["count"] =  $num_rows;
-               $response["success"] = $allRows;
+                        while ($data = $rows->fetch_assoc())
+                        {
+                
+                            $allRows[] = $data;
+            
+                        }
+                        $response["count"] =  $num_rows;
+                    $response["success"] = $allRows;
 
-           } 
-           else 
-           {
-               $response["message"] = "Oops! Ocurrio un error al eliminar el comentario";
-           }       
-            $response["error"] = false;
-            $stmt->close();
-                                        
+                } 
+                else 
+                {
+                    $response["message"] = "Oops! Ocurrio un error al eliminar el comentario";
+                }       
+                    $response["error"] = false;
+                    $stmt->close();
+            }
+            else
+            {
+                $response["no_authorized"] = "No autorizado";
+            }                           
         }
         else
         {
@@ -92,32 +107,43 @@ class HelperQueriesComentarios
         }
         return $response;
     }
-    public function deleteComment($id)
+    public function deleteComment($id,$token)
     {
         $response = array();
         //check if the connection is valid
         if ($GLOBALS['connect'] !== NULL) 
         {
-            if($this->isCommentExists($id))
+            $json =  explode(":",$this->hed->decrypt($token)); 
+        
+            
+            if($this->dbhu->isUserExists(substr($json[1],1,-1)))
             {
-                // insert query
-                $stmt =  $GLOBALS['connect']->prepare("DELETE FROM comentarios where id='$id'");
-                $result = $stmt->execute();
-                $stmt->close();
-                // Check for successful insertion
-                if ($result)
+
+                if($this->isCommentExists($id))
                 {
-                    $response["success"] = "Comentario eliminado";
-                } 
-                else 
+                    // insert query
+                    $stmt =  $GLOBALS['connect']->prepare("DELETE FROM comentarios where id='$id'");
+                    $result = $stmt->execute();
+                    $stmt->close();
+                    // Check for successful insertion
+                    if ($result)
+                    {
+                        $response["success"] = "Comentario eliminado";
+                    } 
+                    else 
+                    {
+                        $response["message"] = "Oops! Ocurrio un error al eliminar el comentario";
+                    }  
+                }
+                else
                 {
-                    $response["message"] = "Oops! Ocurrio un error al eliminar el comentario";
-                }  
+                    $response["message"] = "El comentario con  Id=".$id." es inexistente";
+                }
             }
-            else
-            {
-                $response["message"] = "El comentario con  Id=".$id." es inexistente";
+            else{
+               $response["no_authorized"] = "No autorizado";
             }
+            
             $response["error"] = false;
                                         
         }

@@ -1,5 +1,6 @@
 
 var id;
+var motivo;
 function showData(dataRow) 
 {
     try {
@@ -12,29 +13,13 @@ function showData(dataRow)
                 id=value['id'];
                 document.getElementById('nombres').value=value['nombre'];
                 document.getElementById('email').value=value['email'];
-                document.getElementById('motivo').value=value['motivo'];
+                motivo =value['motivo'];
+                document.getElementById('motivo').value=(motivo===1)?"Queja":"Sugerencia";
                 document.getElementById('mensaje').value=value['mensaje'];
                 console.log(`${key}: ${value['id']==dataRow}`);
                 break;
             }
         }
-        /*
-         if(value['id']==id)
-           {
-               
-                break;
-           }
-        for (var key in json['success']) {
-            
-                console.log(JSON.stringify(data[key]));
-                if(data[key].id==dataRow)
-                {
-                    document.getElementById(nombres).value=data[key].nombre;
-                   
-                    break;
-                }  
-            }
-        }*/
         
       } catch (error) {
         

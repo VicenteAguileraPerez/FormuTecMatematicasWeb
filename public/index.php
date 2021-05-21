@@ -14,7 +14,7 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
 include_once __DIR__ . '\\middlewares\\middleware_users.php';
 include_once __DIR__ . '\\middlewares\\middleware_comentarios.php';
-
+include_once __DIR__ . '\\middlewares\\middleware_temas.php';
 
 try {
   $app->run();

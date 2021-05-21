@@ -18,12 +18,14 @@ $app->post('/registrarse', function (Request $request, Response $response, $args
     return $response->withHeader('Content-Type', 'application/json');
 });
 
-$app->post('/iniciarsesion', function (Request $request, Response $response, $args) {
+$app->post('/iniciarsesion', function (Request $request, Response $response, $args) use($app) {
+  
     $data =  $request->getParsedBody();
     $email  = $data['email'];
     $password = $data['password'];
     
     $dbhandler = new DBHandlerUsers();
+    
     $response->getBody()->write(json_encode($dbhandler->iniciarSesion($email, $password)));
     return $response->withHeader('Content-Type', 'application/json');
 });
