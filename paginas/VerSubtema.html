@@ -24,6 +24,116 @@
     </section>
     <div name="subtema" id="subtema">
     </div>
+     <!-- Button trigger modal -->
+     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarModal">
+        Agregar SubTema
+    </button>
+
+    <div class="bg-blanco container-comments mt-3">
+        <table class="table" id="temas">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>PDF</th>
+                    <th>Eliminar</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../js/scriptTema.js"></script>
+    <script src="../js/scriptTemaFront.js"></script>
+    <script src="../js/cookies.js"></script>
+
+    <!-- Modal Agregar-->
+    <div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h1 class="modal-title text-azul-1 ml-auto mr-auto" id="exampleModalLabel">Agregar Subtema</h1>
+                    <button type="button" class="btn-close btn-closed" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <form class="form flex flex-direction-column" enctype="multipart/form-data">
+                            <input class="form-control" required type="text" name="nombre" id="nombre"
+                                placeholder="Nombre del Subtema"> <br>
+                            <input class="form-control" required type="file" name="file" id="file"> <br>
+                            <input class="texto-blanco btn btn-primary" type="button" name="agregar" id="agregar"
+                                value="Agregar">
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="flex justify-content-center " id="message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="eliminarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h1 class="modal-title text-azul-1 ml-auto mr-auto" id="exampleModalLabel">Eliminar Subtema</h1>
+                    <button type="button" class="btn-close btn-closed" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <form class="form flex flex-direction-column" enctype="multipart/form-data">
+                            <input class="form-control" readonly type="text" name="nombre" id="nombreeli"
+                                placeholder="Nombre del Subtema"> <br>
+                            <input class="form-control" readonly type="text" name="pdfeli" id="pdfeli"
+                                placeholder="Nombre del Subtema"> <br>
+                            <input class="texto-blanco btn btn-danger" type="button" name="eliminar" id="eliminar"
+                                value="Eliminar">
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="flex justify-content-center " id="messageeli"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content ">
+                <div class="modal-header ">
+                    <h1 class="modal-title text-azul-1 ml-auto mr-auto" id="exampleModalLabel">Editar Subtema</h1>
+                    <button type="button" class="btn-close btn-closed" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <form class="form flex flex-direction-column" enctype="multipart/form-data">
+                            <input class="form-control" required type="text" name="nombreedit" id="nombreedit"
+                                placeholder="Nombre del Subtema"> <br>
+                            <input class="form-control" readonly type="text" name="pdfedit" id="pdfedit"
+                                placeholder="Nombre del Subtema"> <br>
+                            <input class="form-control"  type="file" name="fileedit" id="fileedit"> <br>
+                            <input class="texto-blanco btn btn-warning" type="button" name="editar" id="editar"
+                                value="Editar">
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="flex justify-content-center " id="messageedit"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
