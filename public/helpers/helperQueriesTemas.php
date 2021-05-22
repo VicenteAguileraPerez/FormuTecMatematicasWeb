@@ -19,7 +19,7 @@ class HelperQueriesTemas
         
     }
 
-    public function createTema($nombre, $imagen,$token)
+    public function createTema($nombre,$descripcion, $imagen,$token)
     {
         $response = array();
         //check if the connection is valid
@@ -31,8 +31,8 @@ class HelperQueriesTemas
             { 
                 //check if the length is valid
                 // insert query
-                $stmt =  $GLOBALS['connect']->prepare("INSERT INTO temas(nombre, imagen) values(?, ?)");
-                $stmt->bind_param("ss", $nombre, $imagen);
+                $stmt =  $GLOBALS['connect']->prepare("INSERT INTO temas(nombre, imagen,descripcion) values(?, ?, ?)");
+                $stmt->bind_param("sss", $nombre, $imagen, $descripcion);
                 $result = $stmt->execute();
                 $stmt->close();
                 // Check for successful insertion
@@ -75,6 +75,8 @@ class HelperQueriesTemas
             
             if($this->dbhu->isUserExists(substr($json[1],1,-1)))
             {
+                //$response[0]=substr($json[1],1,-1);
+                
                 // insert query
                 $stmt = $GLOBALS['connect']->prepare("SELECT * from temas");
                 $result= $stmt->execute();
@@ -98,20 +100,74 @@ class HelperQueriesTemas
             
                         }
                         $response["count"] =  $num_rows;
-                        $response["success"] = $allRows;
+                    $response["success"] = $allRows;
 
-                } 
+                }  
                 else 
                 {
                     $response["message"] = "Oops! Ocurrio un error al leer los temas";
                 }       
-                    $response["error"] = false;
-                    $stmt->close();
+                $response["error"] = false;
+                $stmt->close();
+               
             }
             else
             {
                 $response["no_authorized"] = "No autorizado";
             }
+            
+                                      
+        }
+        else
+        {
+            $response["error"] = true;
+            $response["message"] = "Oops! No hay conexión a la base de datos";
+        }
+        return $response;
+    }
+    public function showTemasFront()
+    {
+        $response = array();
+        $allRows = array();
+        //check if the connection is valid
+        if ($GLOBALS['connect'] !== NULL) 
+        {
+           
+                //$response[0]=substr($json[1],1,-1);
+                
+                // insert query
+                $stmt = $GLOBALS['connect']->prepare("SELECT * from temas");
+                $result= $stmt->execute();
+                $rows= $stmt->get_result();
+                
+                /**
+                 * "current_field": null,
+                 * "field_count": null,
+                 * "lengths": null,
+                 * "num_rows": null,
+                 * "type": null
+                 */
+                $num_rows = $rows->num_rows;
+                // Check for successful selection
+                if ($result)
+                {
+                        while ($data = $rows->fetch_assoc())
+                        {
+                
+                            $allRows[] = $data;
+            
+                        }
+                        $response["count"] =  $num_rows;
+                    $response["success"] = $allRows;
+
+                }  
+                else 
+                {
+                    $response["message"] = "Oops! Ocurrio un error al leer los temas";
+                }       
+                $response["error"] = false;
+                $stmt->close();
+                   
                                       
         }
         else
@@ -167,7 +223,8 @@ class HelperQueriesTemas
         return $response;
     }
 
-    public function putTema($id,$nombre,$imagen,$token)
+    
+    public function putTema($id,$nombre,$descripcion,$imagen,$token)
     {
         $response = array();
         //check if the connection is valid
@@ -180,7 +237,7 @@ class HelperQueriesTemas
                 if($this->isTemaExists($id))
                 {
                     // insert query
-                    $stmt =  $GLOBALS['connect']->prepare("UPDATE temas set nombre='$nombre',imagen='$imagen'  where id='$id'");
+                    $stmt =  $GLOBALS['connect']->prepare("UPDATE temas set nombre='$nombre',imagen='$imagen', descripcion='$descripcion'  where id='$id'");
                     $result = $stmt->execute();
                     $stmt->close();
                     // Check for successful insertion
@@ -212,7 +269,7 @@ class HelperQueriesTemas
         }
         return $response;
     }
-    public function patchTema($id,$nombre,$token)
+    public function patchTema($id,$nombre,$descripcion,$token)
     {
         $response = array();
         //check if the connection is valid
@@ -225,7 +282,7 @@ class HelperQueriesTemas
                 if($this->isTemaExists($id))
                 {
                     // insert query
-                    $stmt =  $GLOBALS['connect']->prepare("UPDATE temas set nombre='$nombre'  where id='$id'");
+                    $stmt =  $GLOBALS['connect']->prepare("UPDATE temas set nombre='$nombre', descripcion='$descripcion' where id='$id'");
                     $result = $stmt->execute();
                     $stmt->close();
                     // Check for successful insertion

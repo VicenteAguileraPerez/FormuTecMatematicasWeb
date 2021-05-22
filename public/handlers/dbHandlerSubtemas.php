@@ -1,38 +1,38 @@
 <?php
 require_once __DIR__ . "\..\helpers\\helperValidations.php";
-require_once __DIR__ . "\..\helpers\\helperQueriesTemas.php";
+//require_once __DIR__ . "\..\helpers\\helperQueriesTemas.php";
 require_once __DIR__ . "\..\helpers\\helperSaveFiles.php";
 
-class dbHandlerTemas
+class dbHandlerSubtemas
 {
     private $validations;
-    private $helperQueriesTemas;
+    //private $helperQueriesTemas;
     private $helperSaveFiles;
     function __construct()
     {
         $this->helperSaveFiles = new HelperSaveFiles();
         $this->validations = new Validations();
-        $this->helperQueriesTemas = new HelperQueriesTemas();
+        //$this->helperQueriesTemas = new HelperQueriesTemas();
     }
-    function createTema($nombre,$descripcion,$imagen,$token)
+    function createSubtema($nombre,$pdf,$token)
     {
         $response = array();
         
-        $response = $this->helperSaveFiles->saveImage($imagen,$nombre);
+        //$response = $this->helperSaveFiles->saveImage($imagen,$nombre);
 
         if(count($response)==1)
         {
                 $arrayString= array('nombre'=>$nombre);
                 $arrayLengths= array('nombre'=> 100);
-                $imagen = $response['image'];
+                $pdf = $response['pdf'];
                 $response=$this->validations->validateLenght($arrayString,$arrayLengths);
                 if(count($response)==0)
                 {
-                    $arrayString= array('nombre'=>$nombre,"imagen"=>$imagen,"descripción"=>$descripcion);
+                    $arrayString= array('nombre'=>$nombre,"imagen"=>$pdf);
                     $response=$this->validations->validateNotEmpty($arrayString);
                     if(count($response)==0)
                     {
-                        $response = $this->helperQueriesTemas->createTema($nombre,$descripcion,$imagen,$token);
+                        //$response = $this->helperQueriesTemas->createTema($nombre,$imagen,$token);
                     }
                 }
         }
@@ -41,37 +41,37 @@ class dbHandlerTemas
         return $response;
 
     }
-    function deleteTema($id,$url,$token)
+    function deleteSubtema($id,$url,$token)
     {
         $response = array();
-        $this->helperSaveFiles->deleteImage($url);
-        $response = $this->helperQueriesTemas->deleteTema($id,$token); 
+        //$this->helperSaveFiles->deleteImage($url);
+        //$response = $this->helperQueriesTemas->deleteTema($id,$token); 
                                
         
         return $response;
 
     }
-    function putTema($id,$nombre,$nombreAnt,$descripcion,$imagen,$token)
+    function putSubtema($id,$nombre,$nombreAnt,$pdf,$token)
     {
         $response = array();
-        $this->helperSaveFiles->deleteImage(__DIR__."/formulas/$nombre.png");
-        $this->helperSaveFiles->deleteImage(__DIR__."/formulas/$nombreAnt.png");
-        $response = $this->helperSaveFiles->saveImage($imagen,$nombre);
+       // $this->helperSaveFiles->deleteImage(__DIR__."/formulas/$nombre.png");
+        //$this->helperSaveFiles->deleteImage(__DIR__."/formulas/$nombreAnt.png");
+        //$response = $this->helperSaveFiles->saveImage($imagen,$nombre);
 
         if(count($response)==1)
         {
             
             $arrayString= array('nombre'=>$nombre);
             $arrayLengths= array('nombre'=> 100);
-            $imagen = $response['image'];
+            $pdf = $response['pdf'];
             $response=$this->validations->validateLenght($arrayString,$arrayLengths);
             if(count($response)==0)
             {
-                $arrayString= array('nombre'=>$nombre,"descripción"=>$descripcion);
+                $arrayString= array('nombre'=>$nombre);
                 $response=$this->validations->validateNotEmpty($arrayString);
                 if(count($response)==0)
                 {
-                    $response = $this->helperQueriesTemas->putTema($id,$nombre,$descripcion,$imagen,$token); 
+                   // $response = $this->helperQueriesTemas->putTema($id,$nombre,$imagen,$token); 
                 }
             }
         }                  
@@ -79,7 +79,7 @@ class dbHandlerTemas
         return $response;
 
     }
-    function patchTema($id,$nombre,$descripcion,$token)
+    function patchSubtema($id,$nombre,$token)
     {
             $response = array();
             $arrayString= array('nombre'=>$nombre);
@@ -87,11 +87,11 @@ class dbHandlerTemas
             $response=$this->validations->validateLenght($arrayString,$arrayLengths);
             if(count($response)==0)
             {
-                $arrayString= array('nombre'=>$nombre,'descripción'=>$descripcion);
+                $arrayString= array('nombre'=>$nombre);
                 $response=$this->validations->validateNotEmpty($arrayString);
                 if(count($response)==0)
                 {
-                    $response = $this->helperQueriesTemas->patchTema($id,$nombre,$descripcion,$token); 
+                    //$response = $this->helperQueriesTemas->patchTema($id,$nombre,$token); 
                 }
             }
                                
@@ -99,20 +99,11 @@ class dbHandlerTemas
         return $response;
 
     }
-    function showTemas($token)
+    function showSubtemas($token)
     {
         $response = array();
         
-        $response = $this->helperQueriesTemas->showTemas($token); 
-                               
-        return $response;
-
-    }
-    function showTemasFront()
-    {
-        $response = array();
-        
-        $response = $this->helperQueriesTemas->showTemasFront(); 
+        //$response = $this->helperQueriesTemas->showTemas($token); 
                                
         return $response;
 

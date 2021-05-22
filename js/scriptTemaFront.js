@@ -12,6 +12,7 @@ function showTema(dataRow)
             {
                 id=value['id'];
                 document.getElementById('nombreeli').value=value['nombre'];
+                document.getElementById('descripcioneli').value=value['descripcion'];
                 console.log(JSON.stringify(value['nombre']));
                 url=value['imagen'];
                 document.getElementById('imagen').src=value['imagen'];
@@ -37,6 +38,7 @@ function showTemaEditar(dataRow)
             {
                 id=value['id'];
                 document.getElementById('nombreedit').value=value['nombre'];
+                document.getElementById('descripcionedit').value=value['descripcion'];
                 nombreAnt=value['nombre'];
                 console.log(JSON.stringify(value['nombre']));
                 url=value['imagen'];

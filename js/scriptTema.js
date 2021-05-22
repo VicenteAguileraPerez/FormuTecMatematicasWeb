@@ -4,6 +4,7 @@ $(document).ready(function ()
     {
         $("#agregar").click(function () {
             var nombre = $("#nombre").val();
+            var descripcion = $("#descripcion").val();
             var fd = new FormData();
             var files = $('#file')[0].files[0];
             fd.append('file',files);
@@ -14,7 +15,7 @@ $(document).ready(function ()
                 if(files)
                 {
                     $.ajax({
-                        url: "http://localhost/FormuTecMatematicasWeb/public/v1/tema/"+nombre,
+                        url: "http://localhost/FormuTecMatematicasWeb/public/v1/tema/"+nombre+"/"+descripcion,
                         type: "POST",
                         headers: {'Authorization':getCookie()},
                         data: fd,
@@ -52,7 +53,7 @@ $(document).ready(function ()
                                     mensaje.css("color", "#DC3545");
                                     mensaje.append(json['no_authorized']);
                                     clearCookie();
-                                    setTimeout(() => location.href = "http://localhost/FormuTecMatematicasWeb/login.html", 500);
+                                    setTimeout(() => location.href = "http://localhost/FormuTecMatematicasWeb/paginas/login.html", 500);
                                 }
                                 else 
                                 {
@@ -225,6 +226,7 @@ $(document).ready(function ()
         $("#editar").click(function () 
         {
             var nombre = $("#nombreedit").val();
+            var descripcion = $("#descripcionedit").val();
             var fd = new FormData();
             var files = $('#fileedit')[0].files[0];
             fd.append('file',files);
@@ -234,7 +236,7 @@ $(document).ready(function ()
            
         $.ajax(
             {
-                'url': "http://localhost/FormuTecMatematicasWeb/public/v1/tema/"+id+"/"+nombre+"/"+nombreAnt,
+                'url': "http://localhost/FormuTecMatematicasWeb/public/v1/tema/"+id+"/"+nombre+"/"+nombreAnt+"/"+descripcion,
                 'method': "POST",
                 headers: {'Authorization':getCookie()},
                 data: fd,

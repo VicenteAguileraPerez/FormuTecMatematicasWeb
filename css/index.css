@@ -14,7 +14,7 @@ header{
         height: 100vh;
         
     }
-        .container-image img
+        .container-image .img_landing_page
         {
             height: 50%;    
         }
@@ -26,8 +26,12 @@ header{
     }
 #contacto
 {
-    height: 70vh;
-}   
+    height: 100vh;
+} 
+#temas
+{
+    margin: 2rem;
+}  
 .form
 {
     width: 40%;
@@ -38,7 +42,7 @@ header{
     }
 #acerca
 {
-    height: 70vh;
+    /*height: 100vh;*/
 }  
   
     #acerca a
@@ -103,3 +107,88 @@ footer
         
     }
 }
+
+
+
+
+
+.img {
+	display: block;
+	border: 0;
+	width: 80%;
+    margin: auto;
+    padding: 1rem;
+	height: auto;
+}
+
+
+
+
+
+.masthead {
+	background-color: #005b75;
+}
+
+.masthead p, .masthead p a {
+  color: white;
+}
+
+.site-title {
+	color: white;
+}
+
+
+
+
+.card {
+	background: white;
+	margin-bottom: 2em;	
+}
+
+.card a {
+	color: var(--color-azul-3);
+	text-decoration: none;
+}
+
+.card_hover:hover {
+	box-shadow: 3px 3px 8px hsl(0, 0%, 80%);
+}
+
+.card-content {
+	padding: 1.4em;
+    text-align: center;
+}
+
+.card-content h2 {
+	margin-top: 0;
+	margin-bottom: .5em;
+	font-weight: bold;
+    
+}
+
+.card-content p {
+	font-size: 80%;
+    
+}
+
+/* Flexbox stuff */
+
+@media screen and (min-width: 40em) {
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .card {
+        flex: 0 1 calc(50% - 1em);
+    }
+}
+
+@media screen and (min-width: 60em) {
+
+    .card {
+        flex: 0 1 calc(25% - 1em);
+    }
+}
+
