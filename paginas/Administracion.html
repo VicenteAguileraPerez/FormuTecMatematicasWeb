@@ -14,104 +14,122 @@
     <link rel="stylesheet" href="../css/text_colors.css">
     <link rel="stylesheet" href="../css/background.css">
     <link rel="stylesheet" href="../css/versubtemas.css">
+    <link rel="stylesheet" href="../css/about.css">
 </head>
 
 <body class="bg-degradado">
+
+
+    <nav class="navbar navbar-expand-lg   ">
+        <div class="container-fluid">
+            <a class="navbar-brand texto-blanco a" href="./administracion.html">
+                <img src="../assets/imgs/logo-azul.svg" class="logo-img" alt="" width="30" height="24">
+
+                FormuTec Matemáticas
+
+            </a>
+            <div class="d-flex ">
+
+                <button class="btn btn-primary me-2" id="editarB" type="button" data-bs-toggle="modal"
+                    data-bs-target="#editarModal">Editar Perfil</button>
+                <button class="btn btn-primary me-2" id="cerrar" type="button">Cerrar Sesión</button>
+            </div>
+        </div>
+
+    </nav>
+
+
+
+    <div id="temas">
+
+        <div class="centered">
+            <section class="cards" id="cards">
+
+                <article class="card card_hover">
+                    <a href="./comentarios.html">
+                        <picture class="thumbnail">
+                            <img class="img" src="../assets/imgs/message.png" alt="icono de tema">
+                        </picture>
+                        <div class="card-content">
+
+                            <h2>Comentarios</h2>
+                            <p>Lista de todos los comentarios que los usuarios envían</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card card_hover">
+                    <a href="./VerTema.html">
+                        <picture class="thumbnail">
+                            <img class="img" src="../assets/imgs/tema.png" alt="icono de tema">
+                        </picture>
+                        <div class="card-content">
+
+                            <h2>Temas</h2>
+                            <p>Lista de todos los Temas que existen en FormuTec</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card card_hover">
+                    <a href="./VerSubtema.html">
+                        <picture class="thumbnail">
+                            <img class="img" src="../assets/imgs/subtemas.png" alt="icono de tema">
+                        </picture>
+                        <div class="card-content">
+
+                            <h2>Subtemas</h2>
+                            <p>Lista de todos los subtemas que existen en FormuTec</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="card card_hover">
+                    <a href="#">
+                        <picture class="thumbnail">
+                            <img class="img" src="../assets/imgs/report.png" alt="icono de tema">
+                        </picture>
+                        <div class="card-content">
+
+                            <h2>Reportes</h2>
+                            <p>Al dar click generará una serie de reportes relacionados con los comentarios</p>
+                        </div>
+                    </a>
+                </article>
+
+            </section><!-- .cards -->
+
+        </div><!-- .centered -->
+    </div>
+
+
    
 
-        <nav class="navbar navbar-expand-lg   ">
-            <div class="container-fluid">
-                <a class="navbar-brand texto-blanco a" href="./administracion.html">
-                    <img src="../assets/imgs/logo-azul.svg" class="logo-img" alt="" width="30" height="24">
-           
-                    FormuTec Matemáticas
-                    
-                </a>
-                <div class="d-flex ">
-                    
-                    <button class="btn btn-primary me-2" id="editarB" type="button" data-bs-toggle="modal" data-bs-target="#editarModal">Editar Perfil</button>
-                    <button class="btn btn-primary me-2" id="cerrar" type="button">Cerrar Sesión</button>
-               </div>
+
+    <footer id="footer" name="footer" class="bg-azul-2">
+        <div class="inlines flex justify-content-space-around align-items-center">
+            <div>
+                <p class="texto-blanco">©FormuTec Matemáticas 2021</p>
             </div>
-           
-        </nav>
+            <img src="../assets/imgs/Formuteclogonameazul.svg" class="logo-img" alt="" width="270">
 
-
-
-
-            
-
-            <!-- Single item -->
-
-            <div class=" container">
-                <div class="row">
-                    <div class="col">
-                        <a href="./comentarios.html" class="btn">
-                            <div class="card">
-                                <img src="../assets/imgs/message.png" class="card-img-top" alt="..." />
-
-
-                                <div class="card-body">
-                                    <h5 class="card-title">Comentarios</h5>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col">
-                        <a href="./VerTema.html" class="btn">
-                            <div class="card">
-                                <img src="../assets/imgs/tema.png" class="card-img-top" alt="..." />
-                                <div class="card-body">
-                                    <h5 class="card-title">Temas</h5>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col">
-                        <a href="./VerSubtema.html" class="btn">
-                            <div class="card">
-                                <img src="../assets/imgs/subtemas.png" class="card-img-top" alt="..." />
-                                <div class="card-body">
-                                    <h5 class="card-title">Subtemas</h5>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+            <div class=" justify-content-space-between ps-4 pe-4">
+                <div class="justify-content-center ps-4 pt-2">
+                    <a href="#" class="texto-blanco ">Disponible <i class="fab fa-google-play texto-blanco"></i></a>
                 </div>
+
             </div>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/5b47547b38.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../js/cookies.js"></script>
+    <script src="../js/scriptAdministracion.js"></script>
+    <script src="https://kit.fontawesome.com/5b47547b38.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
 
-
-
-            <footer id="footer" name="footer" class="bg-azul-2 mt-4">
-                <div class="inlines flex justify-content-space-around align-items-center">
-                    <div>
-                        <p class="texto-blanco">©FormuTec Matemáticas 2021</p>
-                    </div>
-                    <div class="mt-4 mb-4">
-                        <img src="../assets/imgs/Formuteclogonameazul.svg" class="logo-img" alt="" width="540">
-                    </div>
-                    <div class="flex justify-content-space-between ps-4 pe-4">
-                        <div class="flex justify-content-center ps-4">
-                            <a href="#" class="texto-blanco ">Disponible <i
-                                    class="fab fa-google-play texto-blanco"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <script src="https://kit.fontawesome.com/5b47547b38.js" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-                crossorigin="anonymous"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="../js/cookies.js"></script>
-            <script src="../js/scriptAdministracion.js"></script>
-            <script src="https://kit.fontawesome.com/5b47547b38.js" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-                crossorigin="anonymous"></script>
-                
 </body>
 
 <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -119,20 +137,19 @@
         <div class="modal-content ">
             <div class="modal-header ">
                 <h1 class="modal-title text-azul-1 ml-auto mr-auto" id="exampleModalLabel">Datos Personales</h1>
-                <button type="button" class="btn-close btn-closed" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close btn-closed" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div>
-                    <form class="form flex flex-direction-column" >
+                    <form class="form flex flex-direction-column">
                         <input class="form-control mb-2" required type="text" name="nombre" id="nombre"
                             placeholder="Nombre">
                         <input class="form-control mb-2" required type="text" name="email" id="email"
                             placeholder="Email">
                         <input class="form-control mb-2" required type="password" name="paswordant1" id="paswordant1"
                             placeholder="Contraseña Actual">
-                        <input class="texto-blanco btn btn-warning mb-2" type="button" id="cambiarB" type="button" data-bs-toggle="modal" data-bs-target="#cambiarModal"
-                            value="Cambiar contraseña">
+                        <input class="texto-blanco btn btn-warning mb-2" type="button" id="cambiarB" type="button"
+                            data-bs-toggle="modal" data-bs-target="#cambiarModal" value="Cambiar contraseña">
                         <input class="texto-blanco btn btn-warning" type="button" name="editar" id="editar"
                             value="Editar">
                     </form>
@@ -150,16 +167,15 @@
         <div class="modal-content ">
             <div class="modal-header ">
                 <h1 class="modal-title text-azul-1 ml-auto mr-auto" id="exampleModalLabel">Datos Personales</h1>
-                <button type="button" class="btn-close btn-closed" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close btn-closed" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div>
-                    <form class="form flex flex-direction-column" >
+                    <form class="form flex flex-direction-column">
                         <input class="form-control mb-2" required type="password" name="paswordnue1" id="paswordnue1"
-                        placeholder="Contraseña Nueva">
+                            placeholder="Contraseña Nueva">
                         <input class="form-control mb-2" required type="password" name="paswordnue2" id="paswordnue2"
-                        placeholder="Confirmación de Contraseña Nueva">
+                            placeholder="Confirmación de Contraseña Nueva">
                         <input class="form-control mb-2" required type="password" name="paswordant2" id="paswordant2"
                             placeholder="Contraseña Actual">
                         <input class="texto-blanco btn btn-warning" type="button" name="cambiar" id="cambiar"

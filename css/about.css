@@ -12,9 +12,11 @@ header{
 
 #acerca
 {
-    height: 75vh;
+    
+    height: fit-content;
+    
 }  
-  
+
     #acerca a
     {
         text-decoration: none;
@@ -31,9 +33,10 @@ header{
     }    
 footer
 {
-    
     padding-top: 1.5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 2rem;    
+   
+    
 }    
     footer img{
         width: 74px;
@@ -57,7 +60,7 @@ footer
 {
     #acerca
     {
-        height: 100vh;
+        height: auto;
 
     }
    

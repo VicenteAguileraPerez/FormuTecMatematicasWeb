@@ -26,7 +26,7 @@ header{
     }
 #contacto
 {
-    height: 100vh;
+    min-height: 100vh;
 } 
 #temas
 {
@@ -42,7 +42,7 @@ header{
     }
 #acerca
 {
-    /*height: 100vh;*/
+    height: fit-content;
 }  
   
     #acerca a
@@ -86,7 +86,7 @@ footer
 {
     #acerca
     {
-        height: 100vh;
+        height: auto;
 
     }
    
