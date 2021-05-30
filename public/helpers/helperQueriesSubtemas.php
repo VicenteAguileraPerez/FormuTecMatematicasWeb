@@ -129,7 +129,7 @@ class HelperQueriesSubtemas
            
             
                 // insert query
-                $stmt = $GLOBALS['connect']->prepare("SELECT * from subtemas where idTema='.$idTema.'");
+                $stmt = $GLOBALS['connect']->prepare("SELECT * from subtemas where idTema=".$idTema);
                 $result= $stmt->execute();
                 $rows= $stmt->get_result();
                 
