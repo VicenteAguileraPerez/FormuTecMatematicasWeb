@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2021 at 10:36 PM
+-- Generation Time: May 30, 2021 at 07:51 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -46,22 +46,51 @@ INSERT INTO `comentarios` (`id`, `nombre`, `email`, `motivo`, `mensaje`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `subtemas`
+--
+
+CREATE TABLE `subtemas` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `pdf` text NOT NULL,
+  `idTema` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subtemas`
+--
+
+INSERT INTO `subtemas` (`id`, `nombre`, `pdf`, `idTema`) VALUES
+(16, 'Moda', 'http://localhost/FormuTecMatematicasWeb/public/pdf/Moda.pdf', 23),
+(18, 'mediana 2', 'http://localhost/FormuTecMatematicasWeb/public/pdf/mediana 2.pdf', 22),
+(19, 'mediana 4', 'http://localhost/FormuTecMatematicasWeb/public/pdf/mediana 2.pdf', 22),
+(20, 'mediana 3', 'http://localhost/FormuTecMatematicasWeb/public/pdf/mediana 3.pdf', 39),
+(21, 'Moda 1', 'http://localhost/FormuTecMatematicasWeb/public/pdf/Moda 1.pdf', 19),
+(22, 'Moda  1500', 'http://localhost/FormuTecMatematicasWeb/public/pdf/Moda  1500.pdf', 19),
+(23, 'Propiedades AritmÃ©ticas', 'http://localhost/FormuTecMatematicasWeb/public/pdf/Propiedades AritmÃ©ticas.pdf', 22);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `temas`
 --
 
 CREATE TABLE `temas` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `imagen` text NOT NULL
+  `imagen` text NOT NULL,
+  `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `temas`
 --
 
-INSERT INTO `temas` (`id`, `nombre`, `imagen`) VALUES
-(19, 'Ãlgebra Lineal', 'http://localhost/FormuTecMatematicasWeb/public/formulas/Ãlgebra Lineal.png'),
-(21, 'Probabilidad y EstadÃ­stica', 'http://localhost/FormuTecMatematicasWeb/public/formulas/Probabilidad y EstadÃ­stica.png');
+INSERT INTO `temas` (`id`, `nombre`, `imagen`, `descripcion`) VALUES
+(19, 'Ãlgebra Lineal', 'http://localhost/FormuTecMatematicasWeb/public/formulas/Ãlgebra Lineal.png', 'EncontrarÃ¡s fÃ³rmulas relacionadas con el Ã¡lgebra lineal'),
+(22, 'Ãlgebra', 'http://localhost/FormuTecMatematicasWeb/public/formulas/Ãlgebra.png', 'Temas de Ã¡lgebra'),
+(23, 'GeometrÃ­a', 'http://localhost/FormuTecMatematicasWeb/public/formulas/GeometrÃ­a.png', 'FÃ³rmulas de geometrÃ­a'),
+(39, 'Probabilida y estadÃ­stica', 'http://localhost/FormuTecMatematicasWeb/public/formulas/Probabilida y estadÃ­stica.png', 'probabilida');
 
 -- --------------------------------------------------------
 
@@ -81,7 +110,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`) VALUES
-(1, 'Vicente Aguilera', 'vicente_prez@hotmail.com', '123456'),
+(1, 'Vicente Aguilera PÃ©rez', 'vicente_prez@hotmail.com', '12345678'),
 (2, 'vicente', 'vicente@hotmail.com', '12345678'),
 (3, 'vicente', 'vice@hotmail.com', '12345678'),
 (4, 'vicente', 'vic@hotmail.com', '12345678'),
@@ -113,6 +142,13 @@ ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subtemas`
+--
+ALTER TABLE `subtemas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idTema` (`idTema`);
+
+--
 -- Indexes for table `temas`
 --
 ALTER TABLE `temas`
@@ -132,19 +168,35 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `subtemas`
+--
+ALTER TABLE `subtemas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `temas`
 --
 ALTER TABLE `temas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `subtemas`
+--
+ALTER TABLE `subtemas`
+  ADD CONSTRAINT `subtemas_ibfk_1` FOREIGN KEY (`idTema`) REFERENCES `temas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
