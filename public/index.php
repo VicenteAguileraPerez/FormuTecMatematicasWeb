@@ -12,6 +12,7 @@ $app->setBasePath("/FormuTecMatematicasWeb/public/v1");
 $app->addBodyParsingMiddleware();//para que el getBody no este null
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
+include_once __DIR__ . '\\middlewares\\middleware_subtemas.php';
 include_once __DIR__ . '\\middlewares\\middleware_users.php';
 include_once __DIR__ . '\\middlewares\\middleware_comentarios.php';
 include_once __DIR__ . '\\middlewares\\middleware_temas.php';

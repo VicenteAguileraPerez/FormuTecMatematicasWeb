@@ -27,9 +27,9 @@ viewBox="0 0 2550 3300"
    <![CDATA[
     @font-face { font-family:"Roboto";font-variant:normal;font-weight:normal;src:url("#FontID0") format(svg)}
     .str0 {stroke:#F2F2F4;stroke-width:2.36;stroke-miterlimit:22.9256}
-    .fil2 {fill:#142252}
-    .fil0 {fill:white}
-    .fil1 {fill:#142252;fill-rule:nonzero}
+    .fil2 {fill:#FFFFFF}
+    .fil0 {fill:#FFFFFF}
+    .fil1 {fill:#FFFFFF;fill-rule:nonzero}
     .fnt0 {font-weight:normal;font-size:150px;font-family:'Roboto'}
    ]]>
   </style>

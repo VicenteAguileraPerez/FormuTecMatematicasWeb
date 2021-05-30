@@ -1,0 +1,23 @@
+.a:hover
+{
+    text-decoration: none;
+    color: var(--color-blanco);
+}
+.text-align
+{
+    text-align: center;
+}
+.text-align-end
+{
+    text-align: end;
+}
+
+.logo-img path {
+    fill: #FFFFFF;
+}
+.container-table
+{
+    height: auto;
+    margin: 2rem;
+}
+

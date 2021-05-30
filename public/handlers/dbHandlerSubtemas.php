@@ -1,24 +1,24 @@
 <?php
 require_once __DIR__ . "\..\helpers\\helperValidations.php";
-//require_once __DIR__ . "\..\helpers\\helperQueriesTemas.php";
+require_once __DIR__ . "\..\helpers\\helperQueriesSubtemas.php";
 require_once __DIR__ . "\..\helpers\\helperSaveFiles.php";
 
 class dbHandlerSubtemas
 {
     private $validations;
-    //private $helperQueriesTemas;
+    private $helperQueriesSubtemas;
     private $helperSaveFiles;
     function __construct()
     {
         $this->helperSaveFiles = new HelperSaveFiles();
         $this->validations = new Validations();
-        //$this->helperQueriesTemas = new HelperQueriesTemas();
+        $this->helperQueriesSubtemas = new HelperQueriesSubtemas();
     }
-    function createSubtema($nombre,$pdf,$token)
+    function createSubtema($nombre,$pdf,$idTema,$token)
     {
         $response = array();
         
-        //$response = $this->helperSaveFiles->saveImage($imagen,$nombre);
+        $response = $this->helperSaveFiles->savePDF($pdf,$nombre);
 
         if(count($response)==1)
         {
@@ -28,11 +28,11 @@ class dbHandlerSubtemas
                 $response=$this->validations->validateLenght($arrayString,$arrayLengths);
                 if(count($response)==0)
                 {
-                    $arrayString= array('nombre'=>$nombre,"imagen"=>$pdf);
+                    $arrayString= array('nombre'=>$nombre,'pdf'=>$pdf);
                     $response=$this->validations->validateNotEmpty($arrayString);
                     if(count($response)==0)
                     {
-                        //$response = $this->helperQueriesTemas->createTema($nombre,$imagen,$token);
+                        $response =$this->helperQueriesSubtemas->createSubtema($nombre,$pdf,$idTema,$token);
                     }
                 }
         }
@@ -44,19 +44,19 @@ class dbHandlerSubtemas
     function deleteSubtema($id,$url,$token)
     {
         $response = array();
-        //$this->helperSaveFiles->deleteImage($url);
-        //$response = $this->helperQueriesTemas->deleteTema($id,$token); 
+        $this->helperSaveFiles->deletePDF($url);
+        $response = $this->helperQueriesSubtemas->deleteSubtema($id,$token); 
                                
         
         return $response;
 
     }
-    function putSubtema($id,$nombre,$nombreAnt,$pdf,$token)
+    function putSubtema($id,$nombre,$nombreAnt,$pdf,$idTema,$token)
     {
         $response = array();
-       // $this->helperSaveFiles->deleteImage(__DIR__."/formulas/$nombre.png");
-        //$this->helperSaveFiles->deleteImage(__DIR__."/formulas/$nombreAnt.png");
-        //$response = $this->helperSaveFiles->saveImage($imagen,$nombre);
+        $this->helperSaveFiles->deletePDF(__DIR__."/pdf/$nombre.pdf");
+        $this->helperSaveFiles->deletePDF(__DIR__."/pdf/$nombreAnt.pdf");
+        $response = $this->helperSaveFiles->savePDF($pdf,$nombre);
 
         if(count($response)==1)
         {
@@ -67,11 +67,11 @@ class dbHandlerSubtemas
             $response=$this->validations->validateLenght($arrayString,$arrayLengths);
             if(count($response)==0)
             {
-                $arrayString= array('nombre'=>$nombre);
+                $arrayString= array('nombre'=>$nombre,'pdf'=>$pdf);
                 $response=$this->validations->validateNotEmpty($arrayString);
                 if(count($response)==0)
                 {
-                   // $response = $this->helperQueriesTemas->putTema($id,$nombre,$imagen,$token); 
+                    $response = $this->helperQueriesSubtemas->putSubtema($id,$nombre,$pdf,$idTema,$token); 
                 }
             }
         }                  
@@ -79,7 +79,7 @@ class dbHandlerSubtemas
         return $response;
 
     }
-    function patchSubtema($id,$nombre,$token)
+    function patchSubtema($id,$nombre,$idTema,$token)
     {
             $response = array();
             $arrayString= array('nombre'=>$nombre);
@@ -91,7 +91,7 @@ class dbHandlerSubtemas
                 $response=$this->validations->validateNotEmpty($arrayString);
                 if(count($response)==0)
                 {
-                    //$response = $this->helperQueriesTemas->patchTema($id,$nombre,$token); 
+                    $response = $this->helperQueriesSubtemas->patchSubtema($id,$nombre,$idTema,$token); 
                 }
             }
                                
@@ -103,7 +103,16 @@ class dbHandlerSubtemas
     {
         $response = array();
         
-        //$response = $this->helperQueriesTemas->showTemas($token); 
+        $response = $this->helperQueriesSubtemas->showSubtemas($token); 
+                               
+        return $response;
+
+    }
+    function showSubtemasFront($idTema)
+    {
+        $response = array();
+        
+        $response = $this->helperQueriesSubtemas->showSubtemasFront($idTema); 
                                
         return $response;
 

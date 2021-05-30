@@ -5,7 +5,7 @@
 }
 .container-comments
 {
-    height: 100vh;
+    height: auto;
     margin: 2rem;
 }
 footer
@@ -24,3 +24,12 @@ footer
         color:var(--color-blanco)
     }  
 
+.a:hover
+{
+    text-decoration: none;
+    color: var(--color-blanco);
+}
+.text-align
+{
+    text-align: center;
+}   

@@ -22,28 +22,41 @@
     <link rel="stylesheet" href="../css/flex.css">
     <link rel="stylesheet" href="../css/text_colors.css">
     <link rel="stylesheet" href="../css/background.css">
+    <link rel="stylesheet" href="../css/versubtemas.css">
     
 </head>
 
 <body class="bg-degradado">
-    <nav id="menu" name="menu">
-        <!-- <h1>
-       FormuTec Matemáticas
-        </h1> -->
-        <nav class="navbar ">
-            <div class="container-fluid">
-                <h1 class="navbar-brand texto-blanco" href="#">
-                    <img src="../assets/imgs/icono.png" alt="" width="30" height="34"
-                        class="d-inline-block align-text-top"> FormuTec Matemáticas
-                </h1>
-                <p class="texto-blanco">
-                    Mi sesíon <i></i>
-                </p>
-            </div>
-        </nav>
-     
-        <div class="bg-blanco container-comments"  >
-            <table class="table" id="comments" >
+    <nav class="navbar navbar-expand-lg   ">
+        <div class="container-fluid">
+          <a class="navbar-brand texto-blanco a" href="./administracion.html"> 
+            <img src="../assets/imgs/logo-azul.svg" class="logo-img" alt="" width="30" height="24">
+           
+            FormuTec Matemáticas</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarNavDarkDropdown">
+            <ul class="navbar-nav ">
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle dropdown-item  texto-blanco" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Opciones
+                </a>
+                <ul class="dropdown-menu " aria-labelledby="navbarDarkDropdownMenuLink">
+                  <li><a class="dropdown-item " href="./VerTema.html">Temas</a></li>
+                  <li><a class="dropdown-item " href="./VerSubtema.html">Subtemas</a></li>
+                  
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div id="subtema" name="subtema">
+        <h1 class="texto-blanco text-align">Comentarios</h1>
+    </div>
+        <div class="bg-blanco container-table"  >
+            <table class="table " id="comments" >
                 <thead>
                     <tr>
                         <th>#</th>
@@ -57,19 +70,23 @@
             </table>
         </div>
         
-        <footer id="footer" name="footer" class="bg-azul-2">
+        <footer id="footer" name="footer" class="bg-azul-2 mt-4">
             <div class="inlines flex justify-content-space-around align-items-center">
                 <div>
                     <p class="texto-blanco">©FormuTec Matemáticas 2021</p>
                 </div>
-                <img src="../assets/imgs/formutec.png" alt="">
+                <div class="mt-4 mb-4">
+                   <a href="./administracion.html">
+                     <img src="../assets/imgs/Formuteclogonameazul.svg" class="logo-img" alt="" width="540">
+                   </a>
+                </div>
                 <div class="flex justify-content-space-between ps-4 pe-4">
                     <div class="flex justify-content-center ps-4">
-                        <a href="#" class="texto-blanco ">Disponible <i class="fab fa-google-play texto-blanco"></i></a>
+                        <a href="#" class="texto-blanco ">Disponible <i
+                                class="fab fa-google-play texto-blanco"></i></a>
                     </div>
                 </div>
             </div>
-        </footer>
         <script src="https://kit.fontawesome.com/5b47547b38.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
@@ -88,14 +105,14 @@
                             <div>
                                 <form class="form flex flex-direction-column" id="agregar" name="agregar" action="" method=""
                                     enctype="">
-                                        <input class="form-control" readonly type="text" name="nombres" id="nombres"
-                                        placeholder="Nombre del Subtema"> <br>
-                                        <input class="form-control" readonly type="email" name="email" id="email"
-                                        placeholder="Nombre del Subtema"> <br>
-                                        <input class="form-control" readonly type="text" name="motivo" id="motivo"
-                                        placeholder="Nombre del Subtema"> <br>
-                                        <textarea class="form-control" maxlength="200" name="mensaje" id="mensaje"  placeholder="Mensaje"
-                    readonly></textarea><br>
+                                        <input class="form-control mb-2" readonly type="text" name="nombres" id="nombres"
+                                        placeholder="Nombre del Subtema"> 
+                                        <input class="form-control mb-2" readonly type="email" name="email" id="email"
+                                        placeholder="Nombre del Subtema"> 
+                                        <input class="form-control mb-2" readonly type="text" name="motivo" id="motivo"
+                                        placeholder="Nombre del Subtema"> 
+                                        <textarea class="form-control mb-2" maxlength="200" name="mensaje" id="mensaje"  placeholder="Mensaje"
+                    readonly></textarea>
                                     <input class="texto-blanco btn btn-danger" type="button" name="eliminar" id="eliminar"
                                         value="Eliminar">
                                 </form>

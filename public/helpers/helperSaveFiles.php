@@ -40,6 +40,33 @@ class HelperSaveFiles
         }
         
     }
+    public function deletePDF($url)
+    {
+        $array = explode("/",$url);
+
+       
+        //nombre y exten
+        //hola.como.estas.png file[0]=hola file[1]=png
+        $file=explode(".",$array[count($array)-1]);
+        
+
+        unset($file[count($file)-1]);//elimino extension
+        
+
+        $nameFile = implode("\.",$file);
+        
+
+        $url = dirname(__DIR__).'/pdf/'.$nameFile;
+
+
+        if (file_exists($url.".pdf"))
+        {
+            unlink($url.".pdf");
+        }
+       
+        
+    }
+
 
     public function saveImage($file,$nombre)
     {
@@ -76,12 +103,61 @@ class HelperSaveFiles
             {
                 if($_FILES['file']['size']==0)
                 { 
-                    $response["big_image"]="Tamaño de imagen excedido ";
+                    $response["big_pdf"]="Tamaño de pdf excedido ";
                     $response['error']=false;
                 }
                 else
                 {
-                    $response["image_format"]="Formato invalido, solo (PNG,JPG o JPEG) ";
+                    $response["pdf_format"]="Formato invalido, solo (PDF) ";
+                    $response['error']=false;
+                }
+               
+            }
+        
+        
+        return $response;
+    }
+    public function savePDF($file,$nombre)
+    {
+        $dir = dirname(__DIR__)."\\pdf\\";//C:/xammp2/htdocs//FR....
+        $response = array();
+        $type = $file['file']['type'];
+        $extension =  pathinfo($file['file']['name'])['extension'];
+        $carpeta_destino = $dir;
+        $pdf = $carpeta_destino.$nombre.".".$extension;
+
+        
+            if($type =='application/pdf')
+            {
+                  
+                    move_uploaded_file($file['file']['tmp_name'],$pdf);
+                    $array = explode("\\", $pdf);
+                    
+                    for ($i=0; $i < count($array); $i++)
+                    { 
+                        if($array[$i]!="FormuTecMatematicasWeb")
+                        { 
+                            unset($array[$i]);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                
+                    $pdf="http://localhost/".implode ( '/', $array );
+                    $response['pdf']=$pdf;
+            }
+            else
+            {
+                if($_FILES['file']['size']==0)
+                { 
+                    $response["big_pdf"]="Tamaño de imagen excedido ";
+                    $response['error']=false;
+                }
+                else
+                {
+                    $response["pdf_format"]="Formato invalido, solo (PDF) ";
                     $response['error']=false;
                 }
                

@@ -35,17 +35,23 @@ $app->get('/temas', function (Request $request, Response $response, $args)
 });
 $app->get('/temas/front', function (Request $request, Response $response, $args) 
 {
-   
+    
    // $data= array('nombre' => "vicente", 'p' => 12345);
    //$response->getBody()->write(json_encode($data));
     //$data= array('nombre' => $nombre, 'age' => 40);
- 
-    //$data= array('nombre' => "vicente", 'p' => $autho[0]);
-    //$response->getBody()->write(json_encode($data));
+    /**
+     * ->withHeader('Access-Control-Allow-Origin', 'http:///FormuTecMatematicasWeb/public/v1')
+     *               ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+     *               ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+     *   });
+     */
     $dbhandler = new DBHandlerTemas();
+    //$data= array('nombre' => "vicente", 'p' =>"1234");
+    //$response->getBody()->write(json_encode($data));
     $response->getBody()->write(json_encode($dbhandler->showTemasFront()));
     return $response->withHeader('Content-Type', 'application/json');
 });
+                    
 
 $app->delete('/tema/{id}', function (Request $request, Response $response, $args) {
 

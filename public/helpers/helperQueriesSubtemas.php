@@ -1,28 +1,24 @@
 <?php
+
 include_once(__DIR__ . "\..\conexion.php");
 require_once __DIR__ . "\..\helpers\\helperEncryptDecrypt.php";
 require_once __DIR__ . "\..\helpers\\helperSaveFiles.php";
 require_once __DIR__ . "\..\handlers\\dbHandlerUsers.php";
-require_once __DIR__ . "\..\helpers\\helperQueriesSubtemas.php";
 
-class HelperQueriesTemas
+class HelperQueriesSubtemas
 {
     private $hed;
     private  $dbhu;
-    private $dbhqs;
-    
+
     function __construct()
     {
         // opening db connection
         new ConnectionBBDD();
         $this->hed = new HelperEncryptDecrypt();
         $this->dbhu = new DBHandlerUsers();
-        $this->dbhqs = new HelperQueriesSubtemas();
-        
-        
     }
 
-    public function createTema($nombre,$descripcion, $imagen,$token)
+    public function createSubtema($nombre, $pdf, $idTema, $token)
     {
         $response = array();
         //check if the connection is valid
@@ -34,25 +30,26 @@ class HelperQueriesTemas
             { 
                 //check if the length is valid
                 // insert query
-                $stmt =  $GLOBALS['connect']->prepare("INSERT INTO temas(nombre, imagen,descripcion) values(?, ?, ?)");
-                $stmt->bind_param("sss", $nombre, $imagen, $descripcion);
+                $stmt =  $GLOBALS['connect']->prepare("INSERT INTO subtemas(nombre, pdf, idTema) values(?, ?, ?)");
+                $stmt->bind_param("ssi", $nombre, $pdf, $idTema);
                 $result = $stmt->execute();
                 $stmt->close();
                 // Check for successful insertion
                 if ($result)
                 {
-                    $response["success"] = " Tema creado de manera exitosa";
+                    $response["success"] = " Subtema creado de manera exitosa";
                 } 
                 else 
                 {
-                    $response["message"] = "Oops! Ocurrio un error al crear tema";
+                    $response["message"] = "Oops! Ocurrio un error al crear subtema";
                     
                 } 
             }
             else
             {
-                $response["no_authorized"] = "No autorizado ".$token;
+                $response["no_authorized"] = "No autorizado ";
             }
+            $response["error"] = false;
                                        
         }
         else
@@ -60,13 +57,10 @@ class HelperQueriesTemas
             $response["error"] = true;
             $response["message"] = "Oops! No hay conexión a la base de datos";
         }
-       
-        
-        // First check if user already existed in db
-       
         return $response;
     }
-    public function showTemas($token)
+
+    public function showSubtemas($token)
     {
         $response = array();
         $allRows = array();
@@ -78,10 +72,8 @@ class HelperQueriesTemas
             
             if($this->dbhu->isUserExists(substr($json[1],1,-1)))
             {
-                //$response[0]=substr($json[1],1,-1);
-                
                 // insert query
-                $stmt = $GLOBALS['connect']->prepare("SELECT * from temas");
+                $stmt = $GLOBALS['connect']->prepare("SELECT * from subtemas");
                 $result= $stmt->execute();
                 $rows= $stmt->get_result();
                 
@@ -103,22 +95,20 @@ class HelperQueriesTemas
             
                         }
                         $response["count"] =  $num_rows;
-                    $response["success"] = $allRows;
+                        $response["success"] = $allRows;
 
-                }  
+                } 
                 else 
                 {
-                    $response["message"] = "Oops! Ocurrio un error al leer los temas";
+                    $response["message"] = "Oops! Ocurrio un error al leer los subtemas";
                 }       
-                $response["error"] = false;
-                $stmt->close();
-               
+                    $response["error"] = false;
+                    $stmt->close();
             }
             else
             {
                 $response["no_authorized"] = "No autorizado";
             }
-            
                                       
         }
         else
@@ -128,7 +118,8 @@ class HelperQueriesTemas
         }
         return $response;
     }
-    public function showTemasFront()
+   
+    public function showSubtemasFront($idTema)
     {
         $response = array();
         $allRows = array();
@@ -136,9 +127,9 @@ class HelperQueriesTemas
         if ($GLOBALS['connect'] !== NULL) 
         {
            
-                
+            
                 // insert query
-                $stmt = $GLOBALS['connect']->prepare("SELECT * from temas");
+                $stmt = $GLOBALS['connect']->prepare("SELECT * from subtemas where idTema='.$idTema.'");
                 $result= $stmt->execute();
                 $rows= $stmt->get_result();
                 
@@ -153,22 +144,23 @@ class HelperQueriesTemas
                 // Check for successful selection
                 if ($result)
                 {
-                    while ($data = $rows->fetch_assoc())
-                    {
+                        while ($data = $rows->fetch_assoc())
+                        {
                 
-                        $allRows[] = $data;
-                    }    
-                    $response["count"] =  $num_rows;
-                    $response["success"] = $allRows;
+                            $allRows[] = $data;
+            
+                        }
+                        $response["count"] =  $num_rows;
+                        $response["success"] = $allRows;
 
-                }  
+                } 
                 else 
                 {
-                    $response["message"] = "Oops! Ocurrio un error al leer los temas";
+                    $response["message"] = "Oops! Ocurrio un error al leer los subtemas";
                 }       
-                $response["error"] = false;
-                $stmt->close();
-                   
+                    $response["error"] = false;
+                    $stmt->close();
+            
                                       
         }
         else
@@ -179,37 +171,35 @@ class HelperQueriesTemas
         return $response;
     }
     //tema eliminado se cambia el campo de id_tema de la tabla subtemas
-    public function deleteTema($id,$token)
+    public function deleteSubtema($id,$token)
     {
         $response = array();
         //check if the connection is valid
         if ($GLOBALS['connect'] !== NULL) 
         {
             $json =  explode(":",$this->hed->decrypt($token));
-            $email = substr($json[1],1,-1);
-            if($this->dbhu->isUserExists($email))
+         
+            if($this->dbhu->isUserExists(substr($json[1],1,-1)))
             { 
-                if($this->isTemaExists($id))
+                if($this->isSubtemaExists($id))
                 {
-                    //eliminando pdfs
-                   
-                        $stmt =  $GLOBALS['connect']->prepare("DELETE FROM temas where id='$id'");
-                        $result = $stmt->execute();
-                        $stmt->close();
-                        // Check for successful insertion
-                        if ($result)
-                        {
-                            $response["success"] = "Tema eliminado";
-                        } 
-                        else 
-                        {
-                            $response["message"] = "Oops! Ocurrio un error al eliminar el Tema";
-                        }  
-                
+                    // insert query
+                    $stmt =  $GLOBALS['connect']->prepare("DELETE FROM subtemas where id='$id'");
+                    $result = $stmt->execute();
+                    $stmt->close();
+                    // Check for successful insertion
+                    if ($result)
+                    {
+                        $response["success"] = "Subtema eliminado";
+                    } 
+                    else 
+                    {
+                        $response["message"] = "Oops! Ocurrio un error al eliminar el subtema";
+                    }  
                 }
                 else
                 {
-                    $response["message"] = "El Tema con  Id=".$id." es inexistente";
+                    $response["message"] = "El Subtema con  Id=".$id." es inexistente";
                 }
                 $response["error"] = false;
             }
@@ -226,8 +216,7 @@ class HelperQueriesTemas
         return $response;
     }
 
-    
-    public function putTema($id,$nombre,$descripcion,$imagen,$token)
+    public function putSubtema($id,$nombre,$pdf,$idTema,$token)
     {
         $response = array();
         //check if the connection is valid
@@ -237,70 +226,25 @@ class HelperQueriesTemas
             
             if($this->dbhu->isUserExists(substr($json[1],1,-1)))
             { 
-                if($this->isTemaExists($id))
+                if($this->isSubtemaExists($id))
                 {
                     // insert query
-                    $stmt =  $GLOBALS['connect']->prepare("UPDATE temas set nombre='$nombre',imagen='$imagen', descripcion='$descripcion'  where id='$id'");
+                    $stmt =  $GLOBALS['connect']->prepare("UPDATE subtemas set nombre='$nombre',pdf='$pdf', idTema='$idTema'  where id='$id'");
                     $result = $stmt->execute();
                     $stmt->close();
                     // Check for successful insertion
                     if ($result)
                     {
-                        $response["success"] = "Tema actualizado";
+                        $response["success"] = "Subtema actualizado";
                     } 
                     else 
                     {
-                        $response["message"] = "Oops! Ocurrio un error al editar el tema";
+                        $response["message"] = "Oops! Ocurrio un error al editar el subtema";
                     }  
                 }
                 else
                 {
-                    $response["message"] = "El tema con  Id=".$id." es inexistente";
-                }
-                $response["error"] = false;
-            }
-            else
-            {
-                $response["no_authorized"] = "No autorizado";
-            }
-                                        
-        }
-        else
-        {
-            $response["error"] = true;
-            $response["message"] = "Oops! No hay conexión a la base de datos";
-        }
-        return $response;
-    }
-    public function patchTema($id,$nombre,$descripcion,$token)
-    {
-        $response = array();
-        //check if the connection is valid
-        if ($GLOBALS['connect'] !== NULL) 
-        {
-            $json =  explode(":",$this->hed->decrypt($token));
-            
-            if($this->dbhu->isUserExists(substr($json[1],1,-1)))
-            { 
-                if($this->isTemaExists($id))
-                {
-                    // insert query
-                    $stmt =  $GLOBALS['connect']->prepare("UPDATE temas set nombre='$nombre', descripcion='$descripcion' where id='$id'");
-                    $result = $stmt->execute();
-                    $stmt->close();
-                    // Check for successful insertion
-                    if ($result)
-                    {
-                        $response["success"] = "Tema actualizado";
-                    } 
-                    else 
-                    {
-                        $response["message"] = "Oops! Ocurrio un error al editar el tema";
-                    }  
-                }
-                else
-                {
-                    $response["message"] = "El tema con  Id=".$id." es inexistente";
+                    $response["message"] = "El subtema con  Id=".$id." es inexistente";
                 }
                 $response["error"] = false;
             }
@@ -318,9 +262,55 @@ class HelperQueriesTemas
         return $response;
     }
 
-    private function isTemaExists($id)
+    public function patchSubtema($id,$nombre,$idTema,$token)
     {
-        $stmt = $GLOBALS['connect']->prepare("SELECT id from temas WHERE id = '$id'");
+        $response = array();
+        //check if the connection is valid
+        if ($GLOBALS['connect'] !== NULL) 
+        {
+            $json =  explode(":",$this->hed->decrypt($token));
+            
+            if($this->dbhu->isUserExists(substr($json[1],1,-1)))
+            { 
+                if($this->isSubtemaExists($id))
+                {
+                    // insert query
+                    $stmt =  $GLOBALS['connect']->prepare("UPDATE subtemas set nombre='$nombre', idTema='$idTema'  where id='$id'");
+                    $result = $stmt->execute();
+                    $stmt->close();
+                    // Check for successful insertion
+                    if ($result)
+                    {
+                        $response["success"] = "Subtema actualizado";
+                    } 
+                    else 
+                    {
+                        $response["message"] = "Oops! Ocurrio un error al editar el subtema";
+                    }  
+                }
+                else
+                {
+                    $response["message"] = "El subtema con  Id=".$id." es inexistente";
+                }
+                $response["error"] = false;
+            }
+            else
+            {
+                $response["no_authorized"] = "No autorizado";
+            }
+                                        
+        }
+        else
+        {
+            $response["error"] = true;
+            $response["message"] = "Oops! No hay conexión a la base de datos";
+        }
+        return $response;
+    }
+
+    private function isSubtemaExists($id)
+    {
+        $stmt = $GLOBALS['connect']->prepare("SELECT id from subtemas WHERE id = '$id'");
         $stmt->execute();
         $stmt->store_result();
         $num_rows = $stmt->num_rows;

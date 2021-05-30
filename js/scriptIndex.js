@@ -8,15 +8,16 @@ $(document).ready(function () {   // Esta parte del código se ejecutará autom�
     'contentType': 'application/json',
     success: function (data) {
 
-      var imagen, descripcion, titulo;
+      var imagen, descripcion, titulo,id;
       var topic = "";
       $.each(data['success'], function (i, item) {
+        id = data['success'][i]['id']
         imagen = data['success'][i]['imagen'];
         descripcion = data['success'][i]['descripcion'];
         titulo = data['success'][i]['nombre']
         topic += `
                       <article class="card card_hover">
-                        <a href="#">
+                        <a href="http://localhost/FormuTecMatematicasWeb/subtemas.html?id=${id}&tema=${titulo}">
                           <picture class="thumbnail">
                               <img class="img" src="${imagen}"
                                   alt="icono de tema">
@@ -35,7 +36,7 @@ $(document).ready(function () {   // Esta parte del código se ejecutará autom�
 
     error: function (msg) {
 
-      alert("No está disponible el servidor");
+      alert("No está disponible el servidor se callo");
     }
   });
 

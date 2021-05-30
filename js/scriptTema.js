@@ -119,9 +119,10 @@ $(document).ready(function ()
                 {
                     var trHTML = '<tbody>';
                     json = data;
-                    $.each(data['success'], function (i, item) 
+                    
+                    $.each(json['success'], function (i, item) 
                     {
-                        
+                        console.log(data['success'][i]['id']);
                         id=parseInt(data['success'][i]['id']);
                         trHTML += '<tr scope="row"><td>'+data['success'][i]['id']+'</td><td>'+data['success'][i]['nombre']+'</td><td><img width="100px" height="100px" src="'+data['success'][i]['imagen']+'" ></td><td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarModal" onclick="showTema('+id+')">Eliminar</button></td><td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarModal" onclick="showTemaEditar('+id+')" >Editar</button></td></tr>';//
                     });
@@ -196,6 +197,7 @@ $(document).ready(function ()
                         else {
                             mensaje.empty();
                             console.log(respuesta);
+                            mensaje.append(json['success']);
                             setTimeout(() => location.href = "http://localhost/FormuTecMatematicasWeb/paginas/VerTema.html", 500);
                         }
                     }
