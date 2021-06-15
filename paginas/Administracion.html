@@ -82,16 +82,19 @@
                     </a>
                 </article>
                 <article class="card card_hover">
-                    <a href="#">
+                  
                         <picture class="thumbnail">
                             <img class="img" src="../assets/imgs/report.png" alt="icono de tema">
                         </picture>
                         <div class="card-content">
 
                             <h2>Reportes</h2>
-                            <p>Al dar click generará una serie de reportes relacionados con los comentarios</p>
+                            <p>Al dar click en el botón generará una serie de reportes relacionados con los comentarios</p>
+                            <button class="btn btn-primary me-2" id="editarB" type="button" data-bs-toggle="modal"
+                                data-bs-target="#pdfModal">Crear Reportes</button>
+                           
                         </div>
-                    </a>
+                  
                 </article>
 
             </section><!-- .cards -->
@@ -123,6 +126,7 @@
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../js/crearpdf.js"></script>
     <script src="../js/cookies.js"></script>
     <script src="../js/scriptAdministracion.js"></script>
     <script src="https://kit.fontawesome.com/5b47547b38.js" crossorigin="anonymous"></script>
@@ -185,6 +189,28 @@
             </div>
             <div class="modal-footer">
                 <div class="flex justify-content-center " id="messagecambiar"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h1 class="modal-title text-azul-1 ml-auto mr-auto" id="exampleModalLabel">Crear PDFS</h1>
+                <button type="button" class="btn-close btn-closed" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form class="form flex flex-direction-column">
+                        <button  class="texto-blanco btn btn-warning mb-2" id="obtenerAll" type="button">Obtener Todos los registros</button>
+                        <input class="form-control mb-2" type="text" name="" id="id" placeholder="Ingresa Id">
+                        <button  class="texto-blanco btn btn-warning" id="obtenerID" type="button">Obtener  registro por ID</button>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="flex justify-content-center " id="messagepdf"></div>
             </div>
         </div>
     </div>
