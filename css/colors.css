@@ -1,13 +1,13 @@
 :root {
-    --color-blanco: #FFFFFF;
-    --color-gris: #707070;
-    --color-gris-2: rgba(112, 112, 112, .06);
-    --color-negro: #000000;
-    --color-azul-1: #090979;
-    --color-azul-2: #020024;
-    --color-azul-3: #007BFF;
-    --color-azul-4: #2A52AB;
-    --color-rojo-1: #DC3545;
+    --color-blanco    : #FFFFFF;
+    --color-gris      : #707070;
+    --color-gris-2    : rgba(112, 112, 112, .06);
+    --color-negro     : #000000;
+    --color-azul-1    : #090979;
+    --color-azul-2    : #020024;
+    --color-azul-3    : #007BFF;
+    --color-azul-4    : #2A52AB;
+    --color-rojo-1    : #DC3545;
     --color-amarillo-1: #FFC107;
-    --transparent: rgba(0, 0, 0, 0);
+    --transparent     : rgba(0, 0, 0, 0);
 }

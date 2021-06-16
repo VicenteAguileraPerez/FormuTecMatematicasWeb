@@ -8,7 +8,7 @@ $(document).ready(function () {   // Esta parte del código se ejecutará autom�
     'contentType': 'application/json',
     success: function (data) {
 
-      var imagen, descripcion, titulo,id;
+      var imagen, descripcion, titulo, id;
       var topic = "";
       $.each(data['success'], function (i, item) {
         id = data['success'][i]['id']

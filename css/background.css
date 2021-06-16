@@ -1,41 +1,37 @@
-.bg-degradado
-{
+.bg-degradado {
     background: var(--color-azul-1);
     background: radial-gradient(circle, var(--color-azul-1) 0%, var(--color-azul-2) 100%);
 }
-.bg-blanco
-{
-    background:var(--color-blanco);
+
+.bg-blanco {
+    background: var(--color-blanco);
 }
-.bg-azul-3
-{
-    background:var(--color-azul-3);
+
+.bg-azul-3 {
+    background: var(--color-azul-3);
 }
-.bg-azul-2
-{
-    background:var(--color-azul-2);
+
+.bg-azul-2 {
+    background: var(--color-azul-2);
 }
-.bg-azul-4
-{
-    background:var(--color-azul-4);
+
+.bg-azul-4 {
+    background: var(--color-azul-4);
 }
-.bg-gris
-{
-    background:var(--color-gris);
+
+.bg-gris {
+    background: var(--color-gris);
 }
-.bg-gris-2
-{
-    background:var(--color-gris-2);
+
+.bg-gris-2 {
+    background: var(--color-gris-2);
 }
-.bg-negro
-{
-    background:var(--color-negro);
+
+.bg-negro {
+    background: var(--color-negro);
 }
 
 
-.bg-transparent
-{
-    background:var(--transparent);
+.bg-transparent {
+    background: var(--transparent);
 }
-
-

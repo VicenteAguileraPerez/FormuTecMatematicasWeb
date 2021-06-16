@@ -1,110 +1,107 @@
-
-*
-{
+* {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-header{
-    height: 100vh;
+
+header {
+    height  : 100vh;
     position: relative;
     overflow: hidden;
 
 }
-    .container-image
-    {
-        height: 100vh;
-        
-    }
-        .container-image .img_landing_page
-        {
-            height: 50%;    
-        }
 
-    .btn-menu{
-        padding: .1rem;
-        border-radius: .195rem;
-        background: var(--color-blanco);
-    }
-#contacto
-{
-    min-height: 100vh;
-} 
-#temas
-{
-    margin: 2rem;
-}  
-.form
-{
-    width: 40%;
-} 
-    .form textarea
-    {
-        max-height:10rem ;
-    }
-#acerca
-{
-    height: fit-content;
-}  
-  
-    #acerca a
-    {
-        text-decoration: none;
-        color:var(--color-blanco);
-        
-    }
-        #acerca a:hover    
-        {
-            color:var(--color-blanco)
-        }
-    #acerca p    
-    {
-        color:var(--color-blanco);
-    }    
-footer
-{
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-}    
-    footer img{
-        width: 74px;
-    }  
-    footer a{
-        text-decoration: none;
-    } 
-    footer a:hover{
-        color:var(--color-blanco)
-    }  
+.container-image {
+    height: 100vh;
 
-
-.invisibles
-{
-   
-    visibility: hidden;
-    display: none;
-    
 }
-@media only screen and (max-width: 700px) 
-{
-    #acerca
-    {
+
+.container-image .img_landing_page {
+    height: 50%;
+}
+
+.btn-menu {
+    padding      : .1rem;
+    border-radius: .195rem;
+    background   : var(--color-blanco);
+}
+
+#contacto {
+    min-height: 100vh;
+}
+
+#temas {
+    margin: 2rem;
+}
+
+.form {
+    width: 40%;
+}
+
+.form textarea {
+    max-height: 10rem;
+}
+
+#acerca {
+    height: fit-content;
+}
+
+#acerca a {
+    text-decoration: none;
+    color          : var(--color-blanco);
+
+}
+
+#acerca a:hover {
+    color: var(--color-blanco)
+}
+
+#acerca p {
+    color: var(--color-blanco);
+}
+
+footer {
+    padding-top   : 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+footer img {
+    width: 74px;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--color-blanco)
+}
+
+
+.invisibles {
+
+    visibility: hidden;
+    display   : none;
+
+}
+
+@media only screen and (max-width: 700px) {
+    #acerca {
         height: auto;
 
     }
-   
-    .visible
-    {
-        
+
+    .visible {
+
         visibility: hidden;
-        display: none;
-        
+        display   : none;
+
     }
-    
-    .invisibles
-    {
-        
+
+    .invisibles {
+
         visibility: visible;
-        display: inline-block;
-       
-        
+        display   : inline-block;
+
+
     }
 }
 
@@ -113,12 +110,12 @@ footer
 
 
 .img {
-	display: block;
-	border: 0;
-	width: 80%;
-    margin: auto;
+    display: block;
+    border : 0;
+    width  : 80%;
+    margin : auto;
     padding: 1rem;
-	height: auto;
+    height : auto;
 }
 
 
@@ -126,57 +123,58 @@ footer
 
 
 .masthead {
-	background-color: #005b75;
+    background-color: #005b75;
 }
 
-.masthead p, .masthead p a {
-  color: white;
+.masthead p,
+.masthead p a {
+    color: white;
 }
 
 .site-title {
-	color: white;
+    color: white;
 }
 
 
 
 
 .card {
-	background: white;
-	margin-bottom: 2em;	
+    background   : white;
+    margin-bottom: 2em;
 }
 
 .card a {
-	color: var(--color-azul-3);
-	text-decoration: none;
+    color          : var(--color-azul-3);
+    text-decoration: none;
 }
 
 .card_hover:hover {
-	box-shadow: 3px 3px 8px hsl(0, 0%, 80%);
+    box-shadow: 3px 3px 8px hsl(0, 0%, 80%);
 }
 
 .card-content {
-	padding: 1.4em;
+    padding   : 1.4em;
     text-align: center;
 }
 
 .card-content h2 {
-	margin-top: 0;
-	margin-bottom: .5em;
-	font-weight: bold;
-    
+    margin-top   : 0;
+    margin-bottom: .5em;
+    font-weight  : bold;
+
 }
 
 .card-content p {
-	font-size: 80%;
-    
+    font-size: 80%;
+
 }
 
 /* Flexbox stuff */
 
 @media screen and (min-width: 40em) {
     .cards {
-        display: flex;
-        flex-wrap: wrap;
+        display        : flex;
+        flex-wrap      : wrap;
         justify-content: space-between;
     }
 
@@ -191,4 +189,3 @@ footer
         flex: 0 1 calc(25% - 1em);
     }
 }
-
